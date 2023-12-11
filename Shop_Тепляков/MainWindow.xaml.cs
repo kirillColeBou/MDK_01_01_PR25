@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop_Тепляков.Classes;
+using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Shop_Тепляков
         List<object> AllItems_children = new Classes.ChildrenContext().All();
         List<object> AllItems_sport = new Classes.SportContext().All();
         List<object> AllItems_electronics = new Classes.ElectronicsContext().All();
+        public static bool discountIsApply = false;
 
         public MainWindow()
         {
@@ -34,6 +36,7 @@ namespace Shop_Тепляков
             DeleteDiscount();
             AddDiscount();
         }
+
         public void CreateUI()
         {
             foreach (object item in AllItems_children)
@@ -110,8 +113,16 @@ namespace Shop_Тепляков
             OleDbConnection connection = Classes.Common.DBConnection.Connection();
             Classes.Common.DBConnection.Query($"UPDATE [Скидка] SET [Стоимость] = [Стоимость] * {numberWithDot}", connection);
             Classes.Common.DBConnection.CloseConnection(connection);
+            discountIsApply = true;
+            parent.Children.Clear();
+            AllItems_children.Clear();
+            AllItems_sport.Clear();
+            AllItems_electronics.Clear();
+            AllItems_children = new Classes.ChildrenContext().All();
+            AllItems_sport = new Classes.SportContext().All();
+            AllItems_electronics = new Classes.ElectronicsContext().All();
+            CreateUI();
         }
-
 
         public void AddDiscount()
         {

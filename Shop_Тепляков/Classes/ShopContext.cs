@@ -18,14 +18,29 @@ namespace Shop_Тепляков.Classes
         {
             List<object> allShop = new List<object>();
             OleDbConnection connection = Common.DBConnection.Connection();
-            OleDbDataReader shopData = Common.DBConnection.Query("SELECT * FROM [Товар]", connection);
-            while(shopData.Read()) 
+            if (MainWindow.discountIsApply == false)
             {
-                ShopContext newShop = new ShopContext(
-                    shopData.GetInt32(0),
-                    shopData.GetString(1),
-                    shopData.GetInt32(2));
-                allShop.Add(newShop);
+                OleDbDataReader shopData = Common.DBConnection.Query("SELECT * FROM [Товар]", connection);
+                while (shopData.Read())
+                {
+                    ShopContext newShop = new ShopContext(
+                        shopData.GetInt32(0),
+                        shopData.GetString(1),
+                        shopData.GetInt32(2));
+                    allShop.Add(newShop);
+                }
+            }
+            else
+            {
+                OleDbDataReader shopData_discount = Common.DBConnection.Query("SELECT * FROM [Скидка]", connection);
+                while (shopData_discount.Read())
+                {
+                    ShopContext newShop = new ShopContext(
+                        shopData_discount.GetInt32(0),
+                        shopData_discount.GetString(1),
+                        shopData_discount.GetInt32(2));
+                    allShop.Add(newShop);
+                }
             }
             Common.DBConnection.CloseConnection(connection);
             return allShop;

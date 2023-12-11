@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Shop_Тепляков.Classes
 {
@@ -16,8 +17,8 @@ namespace Shop_Тепляков.Classes
 
         public List<object> All()
         {
-            List<object> allShop = new ShopContext().All();
             List<object> allChildren = new List<object>();
+            List<object> allShop = new ShopContext().All();
             OleDbConnection connection = Common.DBConnection.Connection();
             OleDbDataReader childrenData = Common.DBConnection.Query("SELECT * FROM [Детские товары]", connection);
             while (childrenData.Read())
