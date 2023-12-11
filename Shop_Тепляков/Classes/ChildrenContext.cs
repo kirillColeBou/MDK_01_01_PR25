@@ -12,14 +12,14 @@ namespace Shop_Тепляков.Classes
     {
         public ChildrenContext() { }
 
-        public ChildrenContext(int Id, string Name, int Price, int Age, int IdShop) : base(Id, Name, Price, Age, IdShop) { }
+        public ChildrenContext(int Id, string Name, int Price, int Age, int IdShop, string Src) : base(Id, Name, Price, Age, IdShop, Src) { }
 
         public List<object> All()
         {
             List<object> allShop = new ShopContext().All();
             List<object> allChildren = new List<object>();
             OleDbConnection connection = Common.DBConnection.Connection();
-            OleDbDataReader childrenData = Common.DBConnection.Query("SELECT * FROM [Детские вещи]", connection);
+            OleDbDataReader childrenData = Common.DBConnection.Query("SELECT * FROM [Детские товары]", connection);
             while (childrenData.Read())
             {
                 ShopContext shopElement = allShop.Find(x => (x as ShopContext).Id == childrenData.GetInt32(2)) as ShopContext;
@@ -28,7 +28,8 @@ namespace Shop_Тепляков.Classes
                     shopElement.Name,
                     shopElement.Price,
                     childrenData.GetInt32(1),
-                    childrenData.GetInt32(2));
+                    childrenData.GetInt32(2),
+                    childrenData.GetString(3));
                 allChildren.Add(newChildren);
             }
             Common.DBConnection.CloseConnection(connection);

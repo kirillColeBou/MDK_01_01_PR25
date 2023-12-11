@@ -13,7 +13,7 @@
                     <RowDefinition Height="200"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Margin="20" Width="160" Source="C:\Users\kiril\OneDrive\Рабочий стол\МДК 01.01\ПР8\Практическая 8\Images\ic_item.png"/>
+                <Image x:Name="image" Margin="20" Width="160" Source="/Images/ic_item.png"/>
                 <Label x:Name="tb_Name" Content="Наименование" Margin="10,10,10,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
                 <Label x:Name="tb_Price" Content="Цена: " Margin="10,41,10,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
                 <Label x:Name="tb_Characteristic" Content="Характеристика: " Margin="10,72,10,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>

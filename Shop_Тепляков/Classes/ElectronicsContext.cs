@@ -12,7 +12,7 @@ namespace Shop_Тепляков.Classes
     {
         public ElectronicsContext() { }
 
-        public ElectronicsContext(int Id, string Name, int Price, int Capacity, int Drivingspeed, int IdShop) : base(Id, Name, Price, Capacity, Drivingspeed, IdShop) { }
+        public ElectronicsContext(int Id, string Name, int Price, int Capacity, int Drivingspeed, int IdShop, string Src) : base(Id, Name, Price, Capacity, Drivingspeed, IdShop, Src) { }
 
         public List<object> All()
         {
@@ -29,7 +29,8 @@ namespace Shop_Тепляков.Classes
                     shopElement.Price,
                     electronicsData.GetInt32(1),
                     electronicsData.GetInt32(2),
-                    electronicsData.GetInt32(3));
+                    electronicsData.GetInt32(3),
+                    electronicsData.GetString(4));
                 allElectronics.Add(newElectronics);
             }
             Common.DBConnection.CloseConnection(connection);

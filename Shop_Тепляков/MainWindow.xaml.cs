@@ -22,9 +22,9 @@ namespace Shop_Тепляков
     public partial class MainWindow : Window
     {
 
-        List<object> AllItems_children = Classes.ChildrenContext().All();
-        List<object> AllItems_sport = Classes.SportContext().All();
-        List<object> AllItems_electronics = Classes.ElectronicsContext().All();
+        List<object> AllItems_children = new Classes.ChildrenContext().All();
+        List<object> AllItems_sport = new Classes.SportContext().All();
+        List<object> AllItems_electronics = new Classes.ElectronicsContext().All();
 
         public MainWindow()
         {

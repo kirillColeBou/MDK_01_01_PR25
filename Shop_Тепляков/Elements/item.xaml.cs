@@ -30,16 +30,19 @@ namespace Shop_Тепляков.Elements
             {
                 Models.Children ChildrenData = ItemData as Models.Children;
                 tb_Characteristic.Content = "Возраст: " + ChildrenData.Age;
+                image.Source = new BitmapImage(new Uri(ChildrenData.Src));
             }
             if (ItemData is Models.Sport)
             {
                 Models.Sport SportData = ItemData as Models.Sport;
                 tb_Characteristic.Content = "Размер: " + SportData.Size;
+                image.Source = new BitmapImage(new Uri(SportData.Src));
             }
             if (ItemData is Models.Electronics)
             {
                 Models.Electronics ElectronicsData = ItemData as Models.Electronics;
                 tb_Characteristic.Content = $"Ёмкость: {ElectronicsData.Capacity}\nСкорость езды: {ElectronicsData.drivingSpeed}";
+                image.Source = new BitmapImage(new Uri(ElectronicsData.Src));
             }
         }
     }

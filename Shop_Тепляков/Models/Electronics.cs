@@ -11,14 +11,16 @@ namespace Shop_Тепляков.Models
         public int Capacity { get; set; }
         public int drivingSpeed { get; set; }
         public int IdShop {  get; set; }
+        public string Src {  get; set; }
 
         public Electronics() { }
 
-        public Electronics(int id, string name, int price, int capacity, int drivingspeed, int idShop) : base(id, name, price)
+        public Electronics(int id, string name, int price, int capacity, int drivingspeed, int idShop, string src) : base(id, name, price)
         {
             this.Capacity = capacity;
             this.drivingSpeed = drivingspeed;
-            IdShop = idShop;
+            this.IdShop = idShop;
+            this.Src = src;
         }
     }
 }

@@ -10,13 +10,14 @@ namespace Shop_Тепляков.Models
     {
         public int Age { get; set; }
         public int IdShop {  get; set; }
-
+        public string Src {  get; set; }
         public Children() { }
 
-        public Children(int id, string name, int price, int age, int idShop) : base(id, name, price)
+        public Children(int id, string name, int price, int age, int idShop, string src) : base(id, name, price)
         {
             this.Age = age;
-            IdShop = idShop;
+            this.IdShop = idShop;
+            this.Src = src;
         }
     }
 }
