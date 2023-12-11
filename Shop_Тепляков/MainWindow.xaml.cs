@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Shop_Тепляков
 {
@@ -20,9 +21,78 @@ namespace Shop_Тепляков
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        List<object> AllItems_children = RepoItems.AllItems_children();
+        List<object> AllItems_sport = RepoItems.AllItems_sport();
+        List<object> AllItems_electronics = RepoItems.AllItems_electronics();
+
         public MainWindow()
         {
             InitializeComponent();
+            CreateUI();
+        }
+        public void CreateUI()
+        {
+            foreach (object item in AllItems_children)
+            {
+                parent.Children.Add(new Elements.item(item));
+            }
+            foreach (object item in AllItems_sport)
+            {
+                parent.Children.Add(new Elements.item(item));
+            }
+            foreach (object item in AllItems_electronics)
+            {
+                parent.Children.Add(new Elements.item(item));
+            }
+        }
+
+        private void searchItem(object sender, RoutedEventArgs e)
+        {
+            bool flag = false;
+            int search_age = 0;
+            int search_size = 0;
+            string result = search.Text;
+            if (search.Text != "")
+            {
+                foreach (Models.Children children in AllItems_children)
+                {
+                    if (children.Age.ToString().Contains(result))
+                    {
+                        MessageBox.Show($"Товар найден!\n{children.Name}", "Результаты поиска", MessageBoxButton.OK, MessageBoxImage.Information);
+                        search_age++;
+                        flag = true;
+                    }
+                }
+                if (search_age == 0)
+                {
+                    foreach (Models.Sport sport in AllItems_sport)
+                    {
+                        if (sport.Size.ToString().Contains(result))
+                        {
+                            MessageBox.Show($"Товар найден!\n{sport.Name}", "Результаты поиска", MessageBoxButton.OK, MessageBoxImage.Information);
+                            search_size++;
+                            flag = true;
+                        }
+                    }
+                    if (search_size == 0)
+                    {
+                        foreach (Models.Electronics electronics in AllItems_electronics)
+                        {
+                            if (electronics.Capacity.ToString().Contains(result) || electronics.drivingSpeed.ToString().Contains(result))
+                            {
+                                MessageBox.Show($"Товар найден!\n{electronics.Name}", "Результаты поиска", MessageBoxButton.OK, MessageBoxImage.Information);
+                                flag = true;
+                            }
+                        }
+                    }
+                }
+                if (flag == false)
+                {
+                    MessageBox.Show("Товары не найдены!", "Результаты поиска", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else MessageBox.Show("Поле поиска пустое, введите значение!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }
