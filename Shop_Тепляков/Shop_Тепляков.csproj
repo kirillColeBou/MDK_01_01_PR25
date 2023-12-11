@@ -111,7 +111,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Велосипед.png" />
+    <Resource Include="Images\Гироскутер.png" />
+    <Resource Include="Images\Гольф.png" />
+    <Resource Include="Images\Игрушка.png" />
+    <Resource Include="Images\Кактус.png" />
+    <Resource Include="Images\Костюм.png" />
+    <Resource Include="Images\Кошка.png" />
+    <Resource Include="Images\Мяч.png" />
+    <Resource Include="Images\Самокат.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ic_item.png" />
   </ItemGroup>

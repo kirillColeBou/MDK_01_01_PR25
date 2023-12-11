@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,8 @@ namespace Shop_Тепляков
         {
             InitializeComponent();
             CreateUI();
+            DeleteDiscount();
+            AddDiscount();
         }
         public void CreateUI()
         {
@@ -93,6 +96,35 @@ namespace Shop_Тепляков
                 }
             }
             else MessageBox.Show("Поле поиска пустое, введите значение!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void discountItem(object sender, RoutedEventArgs e)
+        {
+            string text = discount.Text;
+            double discountTb;
+            if (text.Contains("."))
+                discountTb = 1 - double.Parse(text, System.Globalization.CultureInfo.InvariantCulture);
+            else
+                discountTb = 1 - double.Parse(text);
+            string numberWithDot = discountTb.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            OleDbConnection connection = Classes.Common.DBConnection.Connection();
+            Classes.Common.DBConnection.Query($"UPDATE [Скидка] SET [Стоимость] = [Стоимость] * {numberWithDot}", connection);
+            Classes.Common.DBConnection.CloseConnection(connection);
+        }
+
+
+        public void AddDiscount()
+        {
+            OleDbConnection connection = Classes.Common.DBConnection.Connection();
+            Classes.Common.DBConnection.Query("INSERT INTO [Скидка] SELECT [Код],[Наименование],[Стоимость] FROM [Товар]", connection);
+            Classes.Common.DBConnection.CloseConnection(connection);
+        }
+
+        public void DeleteDiscount()
+        {
+            OleDbConnection connection = Classes.Common.DBConnection.Connection();
+            Classes.Common.DBConnection.Query("DELETE FROM [Скидка]", connection);
+            Classes.Common.DBConnection.CloseConnection(connection);
         }
     }
 }
