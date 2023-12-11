@@ -9,10 +9,14 @@ namespace Shop_Тепляков.Models
     public class Sport : Shop
     {
         public string Size { get; set; }
+        public int IdShop {  get; set; }
 
-        public Sport(string name, int price, string size) : base(name, price)
+        public Sport() { }
+
+        public Sport(int id, string name, int price, string size, int idShop) : base(id, name, price)
         {
             this.Size = size;
+            this.IdShop = idShop;
         }
     }
 }
