@@ -9,7 +9,7 @@ namespace Shop_Тепляков.Classes.Common
 {
     public class DBConnection
     {
-        public static readonly string Path = @"";
+        public static readonly string Path = @"C:\Users\kiril\OneDrive\Рабочий стол\ПР25\Shop_Тепляков\Shop_Тепляков\bin\Debug\Shop.accdb";
         public static OleDbConnection Connection()
         {
             OleDbConnection oleDbConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.15.0; Data Source=" + Path);
