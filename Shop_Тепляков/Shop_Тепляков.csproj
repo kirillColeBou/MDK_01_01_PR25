@@ -70,6 +70,7 @@
     <Compile Include="Elements\item.xaml.cs">
       <DependentUpon>item.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IContext.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
